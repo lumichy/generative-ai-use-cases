@@ -31,6 +31,10 @@ export interface ClosedVpcProps {
 export class ClosedVpc extends Construct {
   public readonly vpc: ec2.IVpc;
   public readonly apiGatewayVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly lambdaVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly transcribeStreamingVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly pollyVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly agentCoreVpcEndpoint: ec2.InterfaceVpcEndpoint;
   public readonly hostedZone: PrivateHostedZone | undefined;
 
   constructor(scope: Construct, id: string, props: ClosedVpcProps) {
@@ -115,6 +119,18 @@ export class ClosedVpc extends Construct {
 
       if (name === 'ApiGateway') {
         this.apiGatewayVpcEndpoint = vpcEndpoint;
+      }
+      if (name === 'Lambda') {
+        this.lambdaVpcEndpoint = vpcEndpoint;
+      }
+      if (name === 'TranscribeStreaming') {
+        this.transcribeStreamingVpcEndpoint = vpcEndpoint;
+      }
+      if (name === 'Polly') {
+        this.pollyVpcEndpoint = vpcEndpoint;
+      }
+      if (name === 'AgentCore') {
+        this.agentCoreVpcEndpoint = vpcEndpoint;
       }
     }
 

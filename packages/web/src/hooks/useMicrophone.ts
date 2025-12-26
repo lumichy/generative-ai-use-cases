@@ -28,6 +28,8 @@ const pcmEncodeChunk = (chunk: Buffer) => {
 const region = import.meta.env.VITE_APP_REGION;
 const cognitoIdentityPoolProxyEndpoint = import.meta.env
   .VITE_APP_COGNITO_IDENTITY_POOL_PROXY_ENDPOINT;
+const transcribeStreamingProxyEndpoint = import.meta.env
+  .VITE_APP_TRANSCRIBE_STREAMING_PROXY_ENDPOINT;
 const cognito = new CognitoIdentityClient({
   region,
   ...(cognitoIdentityPoolProxyEndpoint
@@ -104,6 +106,9 @@ const useMicrophone = () => {
             [providerName]: token,
           },
         }),
+        ...(transcribeStreamingProxyEndpoint
+          ? { endpoint: transcribeStreamingProxyEndpoint }
+          : {}),
       });
       setTranscribeClient(transcribe);
     });

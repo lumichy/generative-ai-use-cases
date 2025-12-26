@@ -20,6 +20,10 @@ export interface ClosedNetworkStackProps extends StackProps {
 export class ClosedNetworkStack extends Stack {
   public readonly vpc: ec2.IVpc;
   public readonly apiGatewayVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly lambdaVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly transcribeStreamingVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly pollyVpcEndpoint: ec2.InterfaceVpcEndpoint;
+  public readonly agentCoreVpcEndpoint: ec2.InterfaceVpcEndpoint;
   public readonly webBucket: s3.Bucket;
   public readonly cognitoUserPoolProxyApi: agw.RestApi;
   public readonly cognitoIdPoolProxyApi: agw.RestApi;
@@ -112,6 +116,10 @@ export class ClosedNetworkStack extends Stack {
     this.vpc = closedVpc.vpc;
     this.webBucket = closedWeb.bucket;
     this.apiGatewayVpcEndpoint = closedVpc.apiGatewayVpcEndpoint;
+    this.lambdaVpcEndpoint = closedVpc.lambdaVpcEndpoint;
+    this.transcribeStreamingVpcEndpoint = closedVpc.transcribeStreamingVpcEndpoint;
+    this.pollyVpcEndpoint = closedVpc.pollyVpcEndpoint;
+    this.agentCoreVpcEndpoint = closedVpc.agentCoreVpcEndpoint;
     this.cognitoUserPoolProxyApi = cognitoPrivateProxy.cognitoUserPoolProxyApi;
     this.cognitoIdPoolProxyApi = cognitoPrivateProxy.cognitoIdPoolProxyApi;
   }

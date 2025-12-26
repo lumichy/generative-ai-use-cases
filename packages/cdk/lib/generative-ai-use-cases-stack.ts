@@ -61,6 +61,10 @@ export interface GenerativeAiUseCasesStackProps extends StackProps {
   readonly webBucket?: Bucket;
   readonly cognitoUserPoolProxyEndpoint?: string;
   readonly cognitoIdentityPoolProxyEndpoint?: string;
+  readonly lambdaProxyEndpoint?: string;
+  readonly transcribeStreamingProxyEndpoint?: string;
+  readonly pollyProxyEndpoint?: string;
+  readonly bedrockAgentCoreProxyEndpoint?: string;
 }
 
 export class GenerativeAiUseCasesStack extends Stack {
@@ -307,6 +311,10 @@ export class GenerativeAiUseCasesStack extends Stack {
       webBucket: props.webBucket,
       cognitoUserPoolProxyEndpoint: props.cognitoUserPoolProxyEndpoint,
       cognitoIdentityPoolProxyEndpoint: props.cognitoIdentityPoolProxyEndpoint,
+      lambdaProxyEndpoint: props.lambdaProxyEndpoint,
+      transcribeStreamingProxyEndpoint: props.transcribeStreamingProxyEndpoint,
+      pollyProxyEndpoint: props.pollyProxyEndpoint,
+      bedrockAgentCoreProxyEndpoint: props.bedrockAgentCoreProxyEndpoint,
       // Branding
       brandingConfig: params.brandingConfig,
     });

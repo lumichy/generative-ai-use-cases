@@ -48,6 +48,8 @@ const useSpeech = (language: string) => {
       const idPoolId = import.meta.env.VITE_APP_IDENTITY_POOL_ID;
       const cognitoIdentityPoolProxyEndpoint = import.meta.env
         .VITE_APP_COGNITO_IDENTITY_POOL_PROXY_ENDPOINT;
+      const pollyProxyEndpoint = import.meta.env
+        .VITE_APP_POLLY_PROXY_ENDPOINT;
       const cognito = new CognitoIdentityClient({
         region,
         ...(cognitoIdentityPoolProxyEndpoint
@@ -65,6 +67,9 @@ const useSpeech = (language: string) => {
             [providerName]: token,
           },
         }),
+        ...(pollyProxyEndpoint
+          ? { endpoint: pollyProxyEndpoint }
+          : {}),
       });
 
       const command = new SynthesizeSpeechCommand({

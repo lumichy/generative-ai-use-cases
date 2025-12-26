@@ -132,6 +132,8 @@ const useChatApi = () => {
       const idPoolId = import.meta.env.VITE_APP_IDENTITY_POOL_ID;
       const cognitoIdentityPoolProxyEndpoint = import.meta.env
         .VITE_APP_COGNITO_IDENTITY_POOL_PROXY_ENDPOINT;
+      const lambdaProxyEndpoint = import.meta.env
+        .VITE_APP_LAMBDA_PROXY_ENDPOINT;
       const cognito = new CognitoIdentityClient({
         region,
         ...(cognitoIdentityPoolProxyEndpoint
@@ -153,6 +155,9 @@ const useChatApi = () => {
             [providerName]: token,
           },
         }),
+        ...(lambdaProxyEndpoint
+          ? { endpoint: lambdaProxyEndpoint }
+          : {}),
       });
 
       // Append idToken to req

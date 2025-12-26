@@ -279,6 +279,18 @@ export const createStacks = (app: cdk.App, params: ProcessedStackInput) => {
         closedNetworkStack?.cognitoUserPoolProxyApi?.url ?? '',
       cognitoIdentityPoolProxyEndpoint:
         closedNetworkStack?.cognitoIdPoolProxyApi?.url ?? '',
+      lambdaProxyEndpoint: closedNetworkStack?.lambdaVpcEndpoint
+        ? `https://${closedNetworkStack.lambdaVpcEndpoint.vpcEndpointDnsEntries[0]}`
+        : '',
+      transcribeStreamingProxyEndpoint: closedNetworkStack?.transcribeStreamingVpcEndpoint
+        ? `https://${closedNetworkStack.transcribeStreamingVpcEndpoint.vpcEndpointDnsEntries[0]}`
+        : '',
+      pollyProxyEndpoint: closedNetworkStack?.pollyVpcEndpoint
+        ? `https://${closedNetworkStack.pollyVpcEndpoint.vpcEndpointDnsEntries[0]}`
+        : '',
+      bedrockAgentCoreProxyEndpoint: closedNetworkStack?.agentCoreVpcEndpoint
+        ? `https://${closedNetworkStack.agentCoreVpcEndpoint.vpcEndpointDnsEntries[0]}`
+        : '',
     }
   );
 

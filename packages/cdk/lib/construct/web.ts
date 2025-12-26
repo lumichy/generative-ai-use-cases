@@ -64,6 +64,10 @@ export interface WebProps {
   readonly webBucket?: s3.Bucket;
   readonly cognitoUserPoolProxyEndpoint?: string;
   readonly cognitoIdentityPoolProxyEndpoint?: string;
+  readonly lambdaProxyEndpoint?: string;
+  readonly transcribeStreamingProxyEndpoint?: string;
+  readonly pollyProxyEndpoint?: string;
+  readonly bedrockAgentCoreProxyEndpoint?: string;
   readonly agentCoreEnabled: boolean;
   readonly agentCoreGenericRuntime?: AgentCoreConfiguration;
   readonly agentBuilderEnabled: boolean;
@@ -300,6 +304,14 @@ export class Web extends Construct {
           props.cognitoUserPoolProxyEndpoint ?? '',
         VITE_APP_COGNITO_IDENTITY_POOL_PROXY_ENDPOINT:
           props.cognitoIdentityPoolProxyEndpoint ?? '',
+        VITE_APP_LAMBDA_PROXY_ENDPOINT:
+          props.lambdaProxyEndpoint ?? '',
+        VITE_APP_TRANSCRIBE_STREAMING_PROXY_ENDPOINT:
+          props.transcribeStreamingProxyEndpoint ?? '',
+        VITE_APP_POLLY_PROXY_ENDPOINT:
+          props.pollyProxyEndpoint ?? '',
+        VITE_APP_BEDROCK_AGENT_CORE_PROXY_ENDPOINT:
+          props.bedrockAgentCoreProxyEndpoint ?? '',
         VITE_APP_AGENT_CORE_ENABLED: props.agentCoreEnabled.toString(),
         VITE_APP_AGENT_CORE_GENERIC_RUNTIME: JSON.stringify(
           props.agentCoreGenericRuntime

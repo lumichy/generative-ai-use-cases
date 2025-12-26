@@ -30,6 +30,8 @@ const identityPoolId = import.meta.env.VITE_APP_IDENTITY_POOL_ID as string;
 const userPoolId = import.meta.env.VITE_APP_USER_POOL_ID as string;
 const cognitoIdentityPoolProxyEndpoint = import.meta.env
   .VITE_APP_COGNITO_IDENTITY_POOL_PROXY_ENDPOINT;
+const bedrockAgentCoreProxyEndpoint = import.meta.env
+  .VITE_APP_BEDROCK_AGENT_CORE_PROXY_ENDPOINT;
 
 const useAgentCoreApi = (id: string) => {
   const {
@@ -114,6 +116,9 @@ const useAgentCoreApi = (id: string) => {
               [providerName]: token,
             },
           }),
+          ...(bedrockAgentCoreProxyEndpoint
+            ? { endpoint: bedrockAgentCoreProxyEndpoint }
+            : {}),
         });
 
         // Convert previous messages to Strands format if provided
